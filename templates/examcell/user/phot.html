@@ -1,0 +1,125 @@
+{% extends 'examcell/user/base.html' %}
+{% block base %}
+   <script>
+function myFunction(i) {
+    document.getElementById("flag").value=i;
+    document.getElementById("myform").submit();
+}
+function myFunction2(i) {
+    document.getElementById("flag1").value=i;
+}
+</script>
+    {% load staticfiles %}
+            <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="{% url 'examcell:home' %}">Home</a></li>
+        <li class="active">{{ tname }}t</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">{{ tname  }} Application Form</h1>
+    <!-- end page-header -->
+    <div class="col-md-12 ui-sortable">
+        <div class="row">
+            <!-- begin col-6 -->
+            <div class="col-md-6 col-md-offset-3 ui-sortable">
+                <div class="panel panel-inverse" data-sortable-id="table-basic-7">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand" data-original-title="" title="" data-init="true"><i class="fa fa-expand"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload" data-original-title="" title="" data-init="true"><i class="fa fa-repeat"></i></a>
+
+
+                        </div>
+                        <h4 class="panel-title">{{ tname }}.</h4>
+                    </div>
+                    <div class="row">
+                        <!-- begin col-6 -->
+                        <div class="col-md-12 ui-sortable">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <!-- begin col-6 -->
+                                    <div class="col-md-12 ui-sortable">
+                                        <div class="table-responsive">
+                                            <!-- Notification start -->
+                                            <div class="alert alert-info fade in m-b-15">
+                                                <strong>Apply For {{ tname }}!</strong>
+                                                <span class="close" data-dismiss="alert">×</span>
+                                            </div>
+                                            <!-- Notification end -->
+                                            <!-- Form Start -->
+                                            <form action="." ID="myform" class="form-horizontal form-bordered" data-parsley-validate="true" novalidate="" method="post">{% csrf_token %}
+                                                <input type="hidden" ID="flag" name="flag">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 col-sm-4 control-label">Select Sem :</label>
+                                                    <div class="col-md-7 col-sm-7">
+                                                        <select
+                                                                class="form-control  "
+                                                                id="select-required"
+                                                                name="sem"
+                                                                data-parsley-required="true"
+                                                                data-parsley-id="25"
+                                                                onchange="myFunction(1)">
+                                                            {% if sem %}
+                                                                <option value="{{ sem }}">{{ sem }}</option>
+                                                            {% endif %}
+
+                                                            <option value="1">3</option>
+                                                            <option value="2">3</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4">Select Subject :</label>
+                                                    <div class="col-md-7 col-sm-7">
+                                                        <select class="form-control" id="select-required" name="sub" data-parsley-required="true">
+                                                            {% if sub %}
+                                                                {% for s in sub %}
+                                                                    <option value="{{ s.sb_code }}">{{ s.sb_name }}</option>
+                                                                {% endfor %}
+                                                            {% endif %}
+
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4 col-sm-4"></label>
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <button type="submit" class="btn btn-primary" onclick="myFunction2(2)">Submit</button>
+                                                    </div>
+                                                </div>
+                                                {% if msg %}
+                                                    <div class="form-group">
+
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <h4>{{ msg }}</h4>
+                                                    </div>
+                                                    </div>
+                                                {% endif %}
+
+                                            </form>
+                                            <!-- Form End !-->
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}<!-- ================== END BASE JS ================== -->

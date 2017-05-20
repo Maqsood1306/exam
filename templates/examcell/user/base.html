@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+{% load staticfiles %}
+<!-- Mirrored from seantheme.com/color-admin-v2.2/admin/html/page_with_top_menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Mar 2017 15:54:17 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <title>E-EXAM CELL | USER</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <link href="{%static 'examcell/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/plugins/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/plugins/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/css/animate.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/css/style.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/css/style-responsive.min.css'%}" rel="stylesheet"/>
+    <link href="{%static 'examcell/css/theme/default.css'%}" rel="stylesheet" id="theme"/>
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="{%static 'examcell/plugins/pace/pace.min.js'%}"></script>
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
+
+<!-- begin #page-container -->
+<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
+    <!-- begin #header -->
+    <div id="header" class="header navbar navbar-default navbar-fixed-top">
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin mobile sidebar expand / collapse button -->
+            <div class="navbar-header">
+                <a href="{% url 'examcell:index' %}" class="navbar-brand"><span class="navbar-logo"></span> E-EXAM CELL</a>
+                <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- end mobile sidebar expand / collapse button -->
+
+            <!-- begin header navigation right -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown navbar-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{%static 'examcell/img/user-13.jpg'%}" alt=""/>
+                        <span class="hidden-xs">{{ user.username }}</span> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInLeft">
+                        <li class="arrow"></li>
+                        <li><a href="javascript:;">Edit Profile</a></li>
+                        <li><a href="javascript:;">Setting</a></li>
+                        <li class="divider"></li>
+                        <li><a href={% url 'examcell:userlogout' %}>Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- end header navigation right -->
+        </div>
+        <!-- end container-fluid -->
+    </div>
+    <!-- end #header -->
+
+    <!-- begin #top-menu -->
+    <div id="top-menu" class="top-menu">
+        <!-- begin top-menu nav -->
+
+        <ul class="nav">
+            <li class="has-sub">
+                <a href="{% url 'examcell:home' %}" >
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span>Notice Board</span>
+                </a>
+            </li>
+            <li class="has-sub">
+
+                <a href="{% url 'examcell:results' %}" >
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span>View Results</span>
+                </a>
+                <!--<ul class="sub-menu">
+                    <li><a href="index.html">SEM 3</a></li>
+                    <li><a href="index.html">SEM 4</a></li>
+                    <li><a href="index.html">SEM 5</a></li>
+                    <li><a href="index.html">SEM 6</a></li>
+                </ul>-->
+            </li>
+
+            <li class="has-sub">
+                <a href="{% url 'examcell:hallpdf' %}">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span>Hall Tickets</span>
+                </a>
+                <!--<ul class="sub-menu">
+                    <li><a href="ui_general.html">SEM 3</a></li>
+                    <li><a href="ui_typography.html">SEM 4</a></li>
+                    <li><a href="ui_tabs_accordions.html">SEM 5</a></li>
+                    <li><a href="ui_unlimited_tabs.html">SEM 6</a></li>
+                </ul> -->
+            </li>
+            <li class="has-sub">
+                <a href="{% url 'examcell:reval' %}">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span>Revaluation</span>
+                </a>
+                <!--<ul class="sub-menu">
+                    <li><a href="http://seantheme.com/color-admin-v2.2/frontend/one-page-parallax/index.html" target="_blank">SEM 3</a></li>
+                    <li><a href="http://seantheme.com/color-admin-v2.2/frontend/blog/index.html" target="_blank">SEM 4</a></li>
+                    <li><a href="http://seantheme.com/color-admin-v2.2/frontend/forum/index.html" target="_blank">SEM 5</a></li>
+                    <li><a href="http://seantheme.com/color-admin-v2.2/frontend/e-commerce/index.html" target="_blank">SEM 6</a></li>
+                </ul> -->
+            </li>
+            <li class="has-sub">
+                <a href="{% url 'examcell:phot' %}">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-angle-double-right"></i>
+                    <span>Photocopy</span>
+                </a>
+                <!--<ul class="sub-menu">
+                    <li><a href="email_system.html">SEM 3</a></li>
+                    <li><a href="email_newsletter.html">SEM 4</a></li>
+                    <li><a href="email_system.html">SEM 5</a></li>
+                    <li><a href="email_system.html">SEM 6</a></li>
+                </ul> -->
+            </li>
+        </ul>
+        <!-- end top-menu nav -->
+    </div>
+    <!-- end #top-menu -->
+
+    <!-- begin #content -->
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        {% block base %}
+        {% endblock %}
+    </div>
+    <!-- end #content -->
+
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+<!-- end page container -->
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="{%static 'examcell/plugins/jquery/jquery-1.9.1.min.js'%}"></script>
+<script src="{%static 'examcell/plugins/jquery/jquery-migrate-1.1.0.min.js'%}"></script>
+<script src="{%static 'examcell/plugins/jquery-ui/ui/minified/jquery-ui.min.js'%}"></script>
+<script src="{%static 'examcell/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+
+<script src="{%static 'examcell/plugins/slimscroll/jquery.slimscroll.min.js'%}"></script>
+<script src="{%static 'examcell/plugins/jquery-cookie/jquery.cookie.js'%}"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="{%static 'examcell/js/apps.min.js'%}"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function() {
+        App.init();
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','../../../../www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+
+<!-- Mirrored from seantheme.com/color-admin-v2.2/admin/html/page_with_top_menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Mar 2017 15:54:17 GMT -->
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+        .title span {
+            color: #007cae;
+        }
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+    <div class='header'>
+        <p class='title'>Hall Ticket</p>
+    </div>
+    <div>
+        <div class='details'>
+
+            <table >
+                <tr>
+                    <td>Seat NO</td>
+                    <td colspan="4">{{ seat }}</td>
+                </tr>
+                <tr>
+                    <td>Semester</td>
+                    <td colspan="4">{{ sem }}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td colspan="4">{{ name }}</td>
+                </tr>
+            </table>
+            <hr class='hrItem' />
+            <table border="1">
+                <tr>
+                    <td>Subject Name</td>
+                    <td>Status</td>
+                </tr>
+                <tr>
+                    <td>{{ sub1 }}</td>
+                    <td>{{ s1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ sub2 }}</td>
+                    <td>{{ s2 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ sub3 }}</td>
+                    <td>{{ s3 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ sub4 }}</td>
+                    <td>{{ s4 }}</td>
+                </tr>
+
+            </table>
+            <hr class='hrItem' />
+        </div>
+    </div>
+</div>
+</body>
+</html>

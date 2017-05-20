@@ -1,0 +1,66 @@
+{% extends 'examcell/base.html' %}
+
+{% block body %}
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="{% url 'examcell:admin' %}">Home</a></li>
+        <li class="active">Add Notice</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Add Notice <small> This Notice will appear to all student </small></h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-8 -->
+        <div class="col-md-8 col-md-offset-2">
+            <!-- begin panel -->
+            <div class="panel panel-inverse" data-sortable-id="ui-buttons-1">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                    </div>
+                    <h4 class="panel-title">Add Notice</h4>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="."  method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3" for="message">Subject :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input class="form-control" type="text" id="digits" name="sub" placeholder="Subject" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3" for="fullname">Message :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <textarea class="form-control" placeholder="Textarea" name="msg" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3" for="fullname"></label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="submit" class="btn btn-primary m-r-5" value="Submit"/>
+                            </div>
+                        </div>
+                        {% if msg %}
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="fullname"><h1>Result</h1>></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <h1>{{ msg }}</h1>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% comment %}<textarea class="ckeditor" id="editor1" name="editor1" rows="20">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>{% endcomment %}
+                    </form>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <!-- end col-8 -->
+    </div>
+    <!-- end row-->
+
+{% endblock %}

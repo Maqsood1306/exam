@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+{% load staticfiles %}
+
+<!-- Mirrored from seantheme.com/color-admin-v2.2/admin/html/register_v3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 10 Mar 2017 15:39:20 GMT -->
+<head>
+	<meta charset="utf-8" />
+	<title>Color Admin | Register Page</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link href="{% static 'examcell/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/css/animate.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/css/style.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/css/style-responsive.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'examcell/css/theme/default.css' %}" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static 'examcell/plugins/pace/pace.min.js' %}"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body class="pace-top bg-white">
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade">
+	    <!-- begin register -->
+        <div class="register register-with-news-feed">
+            <!-- begin news-feed -->
+            <div class="news-feed">
+                <div class="news-image">
+                    <img src="{% static 'examcell/img/login-bg/bg-8.jpg' %}" alt="" />
+                </div>
+                <div class="news-caption">
+                    <h4 class="caption-title"><i class="fa fa-edit text-success"></i> E-EXAM CELL</h4>
+                    <p>
+                         M.H. Saboo Siddik College of Engineering Examcell department
+                    </p>
+                </div>
+            </div>
+            <!-- end news-feed -->
+            <!-- begin right-content -->
+            <div class="right-content ">
+                <!-- begin register-header -->
+                <h1 class="register-header">
+                    Sign Up
+                    <small>Create your Exam cell account</small>
+                </h1>
+                <!-- end register-header -->
+                <!-- begin register-content -->
+                <div class="register-content">
+                    <form action="." method="POST" class="margin-bottom-0">{% csrf_token %}
+
+                        <div class="row row-space-10">
+                            <div class="col-md-4 m-b-15">
+                                <input type="number" class="form-control" placeholder="Student ID" name="sid" required />
+                            </div>
+                            <div class="col-md-4 m-b-15">
+                            </div>
+                            <div class="col-md-4 m-b-15">
+                            </div>
+                        </div>
+                        <div class="row row-space-10">
+                            <div class="col-md-4 m-b-15">
+                                <input type="text" class="form-control" placeholder="First name" name="sname" required />
+                            </div>
+                            <div class="col-md-4 m-b-15">
+                                <input type="text" class="form-control" placeholder="Middle name" name="mname" required />
+                            </div>
+                            <div class="col-md-4 m-b-15">
+                                <input type="text" class="form-control" placeholder="Last name" name="lname" required />
+                            </div>
+                        </div>
+
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Email address" name="email" required />
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="file" class="form-control" accept="image/" name="pic" placeholder="image" required />
+                            </div>
+                        </div>
+
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" placeholder="Password" name="pwd" required />
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" placeholder="Renter Password" name="pwd" required />
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <textarea class="form-control" name="addr" rows="4" data-parsley-range="[20,200]" placeholder="Enter your Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="number" class="form-control" placeholder="Mobile No" name="mob" size="10" required />
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <select class="form-control" name="dname">
+                                    {% for d in dept %}
+                                        <option value="{{ d.dname }}">{{ d.dname }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row m-b-15">
+                            <div class="col-md-3">
+                                <input type="radio" name="gender" value="male" id="radio-required" data-parsley-required="true" data-parsley-multiple="radiorequired"> Male
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="gender" value="female" id="radio-required" data-parsley-required="true" data-parsley-multiple="radiorequired"> Female
+                            </div>
+                        </div>
+                        <div class="checkbox m-b-30">
+                            <label>
+                                <input type="checkbox" required /> By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
+                            </label>
+                        </div>
+                        <div class="register-buttons">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+                        </div>
+                        <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                            Already a member? Click <a href="{% url 'examcell:userlogin' %}">here</a> to login.
+                        </div>
+                        {% if msg %}
+                        <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                            {{ msg }}
+                        </div>
+                        {% endif %}
+                        <hr />
+                        <p class="text-center">
+                            &copy; Color Admin All Right Reserved 2015
+                        </p>
+                    </form>
+                </div>
+                <!-- end register-content -->
+            </div>
+            <!-- end right-content -->
+        </div>
+        <!-- end register -->
+
+
+	</div>
+	<!-- end page container -->
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static 'examcell/plugins/jquery/jquery-1.9.1.min.js' %}"></script>
+	<script src="{% static 'examcell/plugins/jquery/jquery-migrate-1.1.0.min.js' %}"></script>
+	<script src="{% static 'examcell/plugins/jquery-ui/ui/minified/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'examcell/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!--[if lt IE 9]>
+		<script src="{% static 'examcell/crossbrowserjs/html5shiv.js'%}"></script>
+		<script src="{% static 'examcell/crossbrowserjs/respond.min.js'%}"></script>
+		<script src="{% static 'examcell/crossbrowserjs/excanvas.min.js'%}"></script>
+	<![endif]-->
+	<script src="{% static 'examcell/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<script src="{% static 'examcell/plugins/jquery-cookie/jquery.cookie.js' %}"></script>
+	<!-- ================== END BASE JS ================== -->
+
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="{% static 'examcell/js/apps.min.js' %}"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+	<script>
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53034621-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+
+</html>

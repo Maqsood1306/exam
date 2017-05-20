@@ -1,0 +1,86 @@
+{% extends 'examcell/base.html' %}
+
+{% block body %}
+    <div class="row">
+        <!-- begin col-3 -->
+        <div class="col-md-3 col-sm-6">
+            <div class="widget widget-stats bg-green">
+                <div class="stats-icon"><i class="fa fa-desktop"></i></div>
+                <div class="stats-info">
+                    <h4>TOTAL STUDENT</h4>
+                    <p>{{ ts }}</p>
+                </div>
+                <div class="stats-link">
+                    <a href="{% url 'examcell:addstud' %}">Add Student <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-3 -->
+        <!-- begin col-3 -->
+        <div class="col-md-3 col-sm-6">
+            <div class="widget widget-stats bg-blue">
+                <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                <div class="stats-info">
+                    <h4>TOTAL PHOTOCOPY RECIEVED</h4>
+                    <p>{{ tp }}</p>
+                </div>
+                <div class="stats-link">
+                    <a href="{% url 'examcell:pho' %}">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-3 -->
+        <!-- begin col-3 -->
+        <div class="col-md-3 col-sm-6">
+            <div class="widget widget-stats bg-purple">
+                <div class="stats-icon"><i class="fa fa-users"></i></div>
+                <div class="stats-info">
+                    <h4>TOTAL REVAL APPLICATION</h4>
+                    <p>{{ tr }}</p>
+                </div>
+                <div class="stats-link">
+                    <a href="{% url 'examcell:rev' %}">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-3 -->
+        <!-- begin col-3 -->
+        <div class="col-md-3 col-sm-6">
+            <div class="widget widget-stats bg-red">
+                <div class="stats-icon"><i class="fa fa-clock-o"></i></div>
+                <div class="stats-info">
+                    <h4>TOTAL NOT CONFIRMED STUDENT</h4>
+                    <p>{{ tc }}</p>
+                </div>
+                <div class="stats-link">
+                    <a href="{% url 'examcell:confirm' %}">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-3 -->
+    </div>
+    <div class="row">
+        <!-- begin page-header -->
+        <h1 class="page-header">Notice <small>All Notice</small></h1>
+        <!-- end page-header -->
+        <ul class="list-group list-group-lg no-radius list-email">
+            {% if n %}
+                {% for i in n %}
+                    <li class="list-group-item inverse">
+                        <div class="email-info">
+                            <span class="email-time">{{ i.time }}</span>
+                            <h5 class="email-title">
+                                <a href=".  ">{{ i.sub }}</a>
+                            </h5>
+                            <p class="email-desc">
+                                {{ i.text }}
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <h1 class="page-header">No Notice is Added </h1>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

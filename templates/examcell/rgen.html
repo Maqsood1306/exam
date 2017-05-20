@@ -1,0 +1,151 @@
+{% extends 'examcell/base.html' %}
+{% block body %}
+    {% load staticfiles %}
+    {% load index %}
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="{% url 'examcell:admin' %}">Home</a></li>
+        <li>Result Generation</li>
+        <li class="active">Class</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Student Result Generation <small> student will receive their result on their account</small></h1>
+    <!-- end page-header -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        {% if stud  %}
+            {% for i,r in  res %}
+                <div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                        </div>
+                        <h4 class="panel-title"><i class="fa fa-user-circle fa-fw"></i>
+                            Roll no : {{ r.0.sid.sid }}&nbsp;&nbsp;&nbsp;Name : {{ r.0.sid.s_fname }} {{ r.0.sid.s_mname }} {{ r.0.sid.s_lname }}</h4>
+                    </div>
+                    <div class="panel-body">
+
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Subject name</th>
+                                <th>IAE-1</th>
+                                <th>IAE-2</th>
+                                <th>IAE-avg</th>
+                                <th>Semester</th>
+                                <th>TH Total</th>
+                                <th>TH point</th>
+                                <th>Oral</th>
+                                <th>Term Work</th>
+                                <th>O/T Total</th>
+                                <th>O/T point</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for inr in r %}
+                                <tr>
+                                    <td>{{ inr.sb_code }}</td>
+                                    <td>{{ inr.test1m }} ( {{ grad|index:i|index:forloop.counter0|index:0 }} )</td>
+                                    <td>{{ inr.test2m }} ( {{ grad|index:i|index:forloop.counter0 |index:1}} )</td>
+                                    <td>{{ inr.avg }} ( {{ grad|index:i|index:forloop.counter0 |index:2}} )</td>
+                                    <td>{{ inr.semm }} ( {{ grad|index:i|index:forloop.counter0 |index:3}} )</td>
+                                    <td>{{ inr.thtot }} ( {{ grad|index:i|index:forloop.counter0 |index:4}} )</td>
+                                    <td>{{ inr.thpoint }} ( {{ grad|index:i|index:forloop.counter0 |index:4}} )</td>
+                                    <td>{{ inr.oralm }} ( {{ grad|index:i|index:forloop.counter0|index:5 }} )</td>
+                                    <td>{{ inr.twm }} ( {{ grad|index:i|index:forloop.counter0 |index:6}} )</td>
+                                    <td>{{ inr.ptot }} ( {{ grad|index:i|index:forloop.counter0 |index:7}} )</td>
+                                    <td>{{ inr.ppoint }} ( {{ grad|index:i|index:forloop.counter0 |index:7}} )</td>
+                                    <td>{{ inr.total }} ( {{ grad|index:i|index:forloop.counter0 |index:8}} )</td>
+                                </tr>
+                            {% endfor %}
+                            <tr >
+                                <td colspan="8"></td>
+                                <td ><label>point</label></td>
+                                <td >{{ pointer|index:i|index:0 }}</td>
+                                <td ><label>SGPI</label></td>
+                                <td >{{ pointer|index:i|index:1 }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+                <form class="form-horizontal" action="."  method="POST" id="myform">{% csrf_token %}
+                    <div class="panel panel-inverse" >
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3" for="fullname"></label>
+                            <div class="col-md-6 col-sm-6">
+                                <input type="hidden" name="flag" value="0">
+                                <input type="hidden" name="sem" value="{{ sem }}">
+                                <input type="hidden" name="dept" value="{{ dept }}">
+                                <input type="submit" class="btn btn-primary m-r-5" value="Issue"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <div class="panel panel-inverse" data-sortable-id="ui-widget-1">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                    </div>
+                    <h4 class="panel-title">Result Confirmation</h4>
+                </div>
+                <div class="panel-body">
+                    {% if msg %}
+                        <h1>{{ msg }}</h1>
+                    {% else %}
+                        <form class="form-horizontal" action="."  method="POST" id="myform">{% csrf_token %}
+                            <input type="hidden" name="flag" value="1">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="message">Branch :</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <select class="form-control" name="dname">
+                                        {% for d in dept %}
+
+                                            <option value="{{d.dname}}">{{d.dname}}</option>
+
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="fullname">Semsiter :</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <select class="form-control" name="sem">
+                                        {% for d in "12345678"%}
+                                            <option value="{{ d }}" >{{d}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3" for="fullname"></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="submit" class="btn btn-primary m-r-5" value="Submit"/>
+                                </div>
+                            </div>
+                            {% comment %}<textarea class="ckeditor" id="editor1" name="editor1" rows="20">&lt;p&gt;This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://ckeditor.com/"&gt;CKEditor&lt;/a&gt;.&lt;/p&gt;</textarea>{% endcomment %}
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {%  endif %}
+    </div>
+    <!-- end panel -->
+    </div>
+    {% if branch %}
+        {{ branch }}
+    {% endif %}
+{% endblock %}

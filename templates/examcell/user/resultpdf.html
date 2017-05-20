@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <title>Result</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+        .title span {
+            color: #007cae;
+        }
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+    <div class='header'>
+        <p class='title'>Hall Ticket</p>
+    </div>
+    <div>
+        <div class='details'>
+            <table border=1 width="78%" height="80%">
+                <table border="0" height="80%" width="75%">
+                    <tr>
+                        <td>
+                            <center>ANJUMAN-I-ISLAM'S</center>
+                            <h1 align="center">M. H. SABOO SIDDIK COLLEGE OF ENGINEERING</h1>
+                            <h3 align="center">8, Saboo Siddik Polytechnic Road, Byculla, Mumbai - 400 008</h3>
+                            <center>(Affiliated To University Of Mumbai)</center>
+                            <h2 align="center">GRADE CARD</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>NAME	: {{ name }}</td>
+                    </tr>
+                    <tr>
+                        <td>EXAMINATION: {{ year }} {{ branch }}                                   SEMESTER- {{ sem }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEAT NO: {{ seat }}  PNR: {{ sid }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="100%" height="75%" border ="1" align="center" >
+                                <tr>
+                                    <th>COURSE CODE</th> <th>COURSE TITLE</th> <th>COURSE CREDIT</th> <th>ESE/PR/OR</th> <th>IA/TW</th> <th>OVERALL</th> <th>CREDIT EARNED (C)</th> <th>GRADE POINTS(G)</th> <th>C x G</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc1 }}</th> <th>{{ sn1 }}</th> <th>{{ tcc1 }}</th> <th>{{ sm1 }}</th> <th>{{ im1 }}</th> <th>{{ tog1 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc1 }}</th> <th>{{ pm1 }}</th> <th>{{ tm1 }}</th> <th>{{  }}</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc2 }}</th> <th>{{ sn2 }}</th> <th>{{ tcc2 }}</th> <th>{{ sm2 }}</th> <th>{{ im2 }}</th> <th>{{ tog2 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc2 }}</th> <th>{{ pm2 }}</th> <th>{{ tm2 }}</th> <th>D</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc3 }}</th> <th>{{ sn3 }}</th> <th>{{ tcc3 }}</th> <th>{{ sm3 }}</th> <th>{{ im3 }}</th> <th>{{ tog3 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc3 }}</th> <th>{{ pm3 }}</th> <th>{{ tm3 }}</th> <th>D</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc4 }}</th> <th>{{ sn4 }}</th> <th>{{ tcc4 }}</th> <th>{{ sm4 }}</th> <th>{{ im4 }}</th> <th>{{ tog4 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc4 }}</th> <th>{{ pm4 }}</th> <th>{{ tm4 }}</th> <th>D</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc5 }}</th> <th>{{ sn5 }}</th> <th>{{ tcc5 }}</th> <th>{{ sm5 }}</th> <th>{{ im5 }}</th> <th>{{ tog5 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc5 }}</th> <th>{{ pm5 }}</th> <th>{{ tm5 }}</th> <th>D</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <th>{{ sc6 }}</th> <th>{{ sn6 }}</th> <th>{{ tcc6 }}</th> <th>{{ sm6 }}</th> <th>{{ im6 }}</th> <th>{{ tog6 }}</th> <th>4</th> <th>5</th> <th>20</th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp</th> <th>&nbsp</th> <th>{{ pcc6 }}</th> <th>{{ pm6 }}</th> <th>{{ tm6 }}</th> <th>D</th> <th>1</th> <th>6</th> <th>6</th>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">TOTAL</th> <th>28</th> <td colspan="3">1</th> <th>28</th> <th>--</th> <th>186</th>
+                                </tr>
+
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Remark    : Successful                                                        SGPI: 8.28                                                             CGPI:  --</td>
+                    </tr>
+                    <tr>
+                        <td>Prepared By   : _______________</td>
+                    </tr>
+                    <tr>
+                        <td>Verified By     : _______________</td>
+                    </tr>
+                    <tr>
+                        <td>Date              : _______________</td>
+                    </tr>
+                    <tr>
+                        <td>Place             : Mumbai                                                       INCHARGE EXAMINATIONS                                                                            PRINCIPAL</td>
+                    </tr>
+                </table>
+            </table>
+            <hr class='hrItem' />
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{% extends 'examcell/base.html' %}
+{% block body %}
+
+<!-- begin breadcrumb -->
+<ol class="breadcrumb pull-right">
+    <li><a href="{% url 'examcell:admin' %}">Home</a></li>
+    <li>Student</li>
+    <li class="active">Student Modification</li>
+</ol>
+<!-- end breadcrumb -->
+<!-- begin page-header -->
+<h1 class="page-header">Student Modification <small>student information modification</small></h1>
+<!-- end page-header -->
+<!-- begin row -->
+<div class="row">
+
+    <!-- begin col-8 -->
+    <div class="col-md-8 col-md-offset-2">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="ui-buttons-1">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                </div>
+                <h4 class="panel-title">Student</h4>
+            </div>
+            <div class="panel-body">
+                 {% if stud %}
+                <form class="form-horizontal" action="."  method="POST">{% csrf_token %}
+                <input type="hidden" name="flag" value="2">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="message">Student ID :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="digits" name="sid" data-parsley-type="digits" placeholder="Digits" value="{{ stud.sid }}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="fullname">Full Name  :</label>
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" type="text" id="fname" name="fname" placeholder="Required" data-parsley-required="true" value="{{ stud.s_fname }}"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" type="text" id="mname" name="mname" placeholder="Required" data-parsley-required="true" value="{{ stud.s_mname }}"/>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <input class="form-control" type="text" id="lname" name="lname" placeholder="Required" data-parsley-required="true" value="{{ stud.s_lname }}"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="email">Email  :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="email" name="email" data-parsley-type="email" placeholder="Email" data-parsley-required="true" value="{{ stud.s_email }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="addr">Address :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <textarea class="form-control" id="addr" name="addr" rows="4" data-parsley-range="[20,200]" placeholder="Range from 20 - 200">{{ stud.s_address }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="cont">Mobile no. :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="cont" name="cont" data-parsley-type="Digits" placeholder="mobile no" data-parsley-required="true" value="{{ stud.s_contact }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Department :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control" id="dname" name="dname" data-parsley-required="true">
+                                {% for d in dept %}
+                                    {% if d == stud.dname %}
+                                        <option value="{{ d.dname }}" selected>{{ d.dname }}</option>
+                                    {% else %}
+                                        <option value="{{ d.dname }}">{{ d.dname }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3">Gender :</label>
+                        <div class="col-md-6 col-sm-6">
+                            {% if stud.s_gender == 'male' %}
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="gender" id="radio-required" data-parsley-required="true" checked value="male"/>Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="gender" id="radio-required2" value="female"/> Female
+                                    </label>
+                                </div>
+                            {% else %}
+                                <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender"  id="radio-required" data-parsley-required="true" value="male"/>Male
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="gender" id="radio-required2" value="female" checked/> Female
+                                </label>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="fullname"></label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="submit" class="btn btn-primary m-r-5" value="Submit"/>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <form class="form-horizontal" action="."  method="POST">{% csrf_token %}
+                <input type="hidden" name="flag" value="1">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="message">Student ID :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="digits" name="sid" data-parsley-type="digits" placeholder="Digits" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="fullname"></label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="submit" class="btn btn-primary m-r-5" value="Submit"/>
+                        </div>
+                    </div>
+                    {% if msg %}
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3" for="fullname"><h1>Result</h1>></label>
+                        <div class="col-md-6 col-sm-6">
+                            <h1>{{ msg }}</h1>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-8 -->
+
+</div>
+<!-- end row
+{% endblock %}

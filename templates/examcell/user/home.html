@@ -1,0 +1,55 @@
+{% extends 'examcell/user/base.html' %}
+{% block base %}
+
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="{% url 'examcell:home' %}">Home</a></li>
+        <li class="active">Notice</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Notice Board</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-8 -->
+        <div class="col-md-8 col-md-offset-2">
+            <!-- begin panel -->
+            <div class="panel panel-inverse" data-sortable-id="ui-buttons-1">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                    </div>
+                    <h4 class="panel-title">Notice Board</h4>
+                </div>
+                <div class="panel-body">
+                    <!-- begin page-header -->
+                    <h1 class="page-header">Notice <small>All Notice</small></h1>
+                    <!-- end page-header -->
+                    <ul class="list-group list-group-lg no-radius list-email">
+                        {% if n %}
+                            {% for i in n %}
+                                <li class="list-group-item inverse">
+                                    <div class="email-info">
+                                        <span class="email-time">{{ i.time }}</span>
+                                        <h5 class="email-title">
+                                            <a href=".  ">{{ i.sub }}</a>
+                                        </h5>
+                                        <p class="email-desc">
+                                            {{ i.text }}
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <h1 class="page-header">No Notice is Added </h1>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'examcell/base.html' %}
+{% block body %}
+    {% load staticfiles %}
+    {% load index %}
+    <ol class="breadcrumb pull-right">
+        <li><a href="{% url 'examcell:admin' %}">Home</a></li>
+        <li class="active">{{ tname }}</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Student {{ tname }} Application </h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+    <div class="row">
+
+        <!-- begin col-8 -->
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-inverse" data-sortable-id="ui-buttons-1">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+
+                    </div>
+                    <h4 class="panel-title">{{ tname }}</h4>
+                </div>
+                <div class="panel-body">
+                    {% if r %}
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>Roll NO</th>
+                            <th>Name</th>
+                            <th>Semester</th>
+                            <th>Branch</th>
+                            <th>Subject</th>
+                            </thead>
+                        <tbody>
+                        {% for i in r %}
+                            <tr>
+                            <td>{{ i.res.sid.sid }}</td>
+                            <td>{{ i.res.sid.s_fname }} {{ i.sid.s_mname }} {{ i.sid.s_lname }}</td>
+                            <td>{{ i.res.r_semno }}</td>
+                            <td>{{ i.res.sid.dname }}</td>
+                            <td>{{ i.res.sb_code }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- end col-8 -->
+    </div>
+{% endblock %}

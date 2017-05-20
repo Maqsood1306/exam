@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>E-EXAM CELL</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/css/animate.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/css/style.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/css/style-responsive.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/css/theme/default.css'%}" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="{% static  'examcell/plugins/jquery-jvectormap/jquery-jvectormap.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css'%}" rel="stylesheet" />
+    <link href="{% static  'examcell/plugins/gritter/css/jquery.gritter.css'%}" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="{% static  'examcell/plugins/DataTables/media/css/dataTables.bootstrap.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/DataTables/extensions/KeyTable/css/keyTable.bootstrap.min.css'%}" rel="stylesheet" />
+	<link href="{% static  'examcell/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css'%}" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static  'examcell/plugins/pace/pace.min.js'%}"></script>
+</head>
+<body>
+
+    <!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+    <!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="{% url 'examcell:index' %}" class="navbar-brand"><span class="navbar-logo"></span> E-EXAM CELL</a>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="{% static 'examcell/img/user-13.jpg' %}" alt="" />
+							<span class="hidden-xs">{{ user.username }}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="javascript:">Edit Profile</a></li>
+							{% comment %}<li><a href="javascript:"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>{% endcomment %}
+							<li><a href="javascript:">Change Password</a></li>
+							<li class="divider"></li>
+							<li><a href="{% url 'examcell:logout' %}">Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+        <!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<div class="image">
+							<a href="javascript:;"><img src="{% static 'examcell/img/user-13.jpg' %}" alt="" /></a>
+						</div>
+						<div class="info">
+							{{ user.username }}
+							<small>Exam Cell Admin</small>
+						</div>
+					</li>
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li class="nav-header">Navigation</li>
+                    <li class="has-sub">
+						<a href="{% url 'examcell:admin' %}">
+						    <span>Dashboard</span>
+					    </a>
+
+					</li>
+                    <li class="has-sub">
+						<a href="{% url 'examcell:adnot' %}">
+						    <span>Add Notice</span>
+					    </a>
+					</li>
+					<li class="has-sub active">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-user"></i>
+						    <span>Student</span>
+					    </a>
+						<ul class="sub-menu">
+						    <li class="active"><a href="{% url 'examcell:addstud' %}">Add</a></li>
+						    <li><a href="{% url 'examcell:modify' %}">Modification</a></li>
+                            <li><a href="{% url 'examcell:confirm' %}">Confirmation</a></li>
+						</ul>
+					</li>
+                    <li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-suitcase"></i>
+						    <span>Marks Entry</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="{% url 'examcell:marks' %}">Class</a></li>
+							<li><a href="{% url 'examcell:studmark' %}">Student</a></li>
+                            <li><a href="{% url 'examcell:marks' %}">modify</a></li>
+                        </ul>
+					</li>
+                    <li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-file"></i>
+						    <span>Result Generation</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="{% url 'examcell:resultgen' %}">Class</a></li>
+                        </ul>
+					</li>
+                    <li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-save"></i>
+						    <span>Hall ticket Generation</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="{% url 'examcell:hallgen' %}">Class</a></li>
+                        </ul>
+					</li>
+                     <li class="has-sub">
+						<a href="{% url 'examcell:rev' %}">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-file-pdf-o"></i>
+						    <span>Reval</span>
+						</a>
+
+					</li>
+                    <li class="has-sub">
+						<a href="{% url 'examcell:pho' %}">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-file-text"></i>
+						    <span>photo copy</span>
+						</a>
+
+					</li>
+                </ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+        <div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+    </div>
+	<!-- end page container -->
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        {% block body %}
+        {% endblock %}
+    </div>
+    <!-- end #content -->
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="{% static 'examcell/plugins/jquery/jquery-1.9.1.min.js' %}"></script>
+        <script src="{% static 'examcell/plugins/jquery/jquery-migrate-1.1.0.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/jquery-ui/ui/minified/jquery-ui.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+        <!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+        <script src="{% static 'examcell/plugins/slimscroll/jquery.slimscroll.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/jquery-cookie/jquery.cookie.js'%}"></script>
+        <!-- ================== END BASE JS ================== -->
+
+        <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+        {% comment %}<script src="{% static 'examcell/plugins/gritter/js/jquery.gritter.js'%}"></script>{% endcomment %}
+        <script src="{% static 'examcell/plugins/flot/jquery.flot.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/flot/jquery.flot.time.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/flot/jquery.flot.resize.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/flot/jquery.flot.pie.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/sparkline/jquery.sparkline.js'%}"></script>
+        <script src="{% static 'examcell/plugins/jquery-jvectormap/jquery-jvectormap.min.js'%}"></script>
+        <script src="{% static 'examcell/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js'%}"></script>
+        <script src="{% static 'examcell/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js'%}"></script>
+        <script src="{% static 'examcell/js/dashboard.min.js'%}"></script>
+        <script src="{% static 'examcell/js/apps.min.js'%}"></script>
+        <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="{% static 'examcell/plugins/DataTables/media/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'examcell/plugins/DataTables/media/js/dataTables.bootstrap.min.js'%}"></script>
+    <script src="{% static 'examcell/plugins/DataTables/extensions/KeyTable/js/dataTables.keyTable.min.js'%}"></script>
+    <script src="{% static 'examcell/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js'%}"></script>
+    <script src="{% static 'examcell/js/table-manage-keytable.demo.min.js'%}"></script>
+    <script src="{% static 'examcell/js/apps.min.js'%}"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <script>
+            $(document).ready(function() {
+                App.init();
+                Dashboard.init();
+            });
+        </script>
+
+
+</body>
+<!-- begin #content -->
+</html>
